@@ -1,4 +1,6 @@
-Url.Content is used when you wish to resolve a URL for any file or resource on your site and you would pass it the relative path:
+Url.Content is used to resolve a URL for any file or resource on the site and pass it the relative path:
+ Url.Content returns relative path to the root of the website ( including virtual dir)
+
 @Url.Content("~/path/file.htm")
 @Url.Content resolves a virtual path into an absolute path. Example:
 

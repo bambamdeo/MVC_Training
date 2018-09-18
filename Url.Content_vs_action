@@ -1,0 +1,79 @@
+Url.Content is used when you wish to resolve a URL for any file or resource on your site and you would pass it the relative path:
+@Url.Content("~/path/file.htm")
+@Url.Content resolves a virtual path into an absolute path. Example:
+
+Url.Action is used to resolve an action from a controller, i.e,  create a URL to an Action in a controller such as:
+
+@Url.Action("ActionName", "ControllerName", new { variable = value })
+
+
+@Url.Action is used to create a URL to an Action in a controller. For example, assuming you had a controller that looked like this:
+
+@Url.Content resolves a virtual path into an absolute path. Example:
+
+The MapPath method maps the specified relative or virtual path to the corresponding physical directory on the server
+
+
+
+Server.MapPath specifies the relative or virtual path to map to a physical directory.
+
+Server.MapPath(".")1 returns the current physical directory of the file (e.g. aspx) being executed
+Server.MapPath("..") returns the parent directory
+Server.MapPath("~") returns the physical path to the root of the application
+Server.MapPath("/") returns the physical path to the root of the domain name (is not necessarily the same as the root of the application)
+An example:
+
+Let's say you pointed a web site application (http://www.example.com/) to
+
+C:\Inetpub\wwwroot
+and installed your shop application (sub web as virtual directory in IIS, marked as application) in
+
+D:\WebApps\shop
+For example, if you call Server.MapPath() in following request:
+
+http://www.example.com/shop/products/GetProduct.aspx?id=2342
+then:
+
+Server.MapPath(".")1 returns D:\WebApps\shop\products
+Server.MapPath("..") returns D:\WebApps\shop
+Server.MapPath("~") returns D:\WebApps\shop
+Server.MapPath("/") returns C:\Inetpub\wwwroot
+Server.MapPath("/shop") returns D:\WebApps\shop
+If Path starts with either a forward slash (/) or backward slash (\), the MapPath() returns a path as if Path was a full, virtual path.
+
+If Path doesn't start with a slash, the MapPath() returns a path relative to the directory of the request being processed.
+
+Note: in C#, @ is the verbatim literal string operator meaning that the string should be used "as is" and not be processed for escape sequences.
+
+Footnotes
+
+Server.MapPath(null) and Server.MapPath("") will produce this effect too.
+
+1) Server.MapPath(".") -- Returns the "Current Physical Directory" of the file (e.g. aspx) being executed.
+
+Ex. Suppose  D:\WebApplications\Collage\Departments
+
+2) Server.MapPath("..") -- Returns the "Parent Directory"
+
+Ex. D:\WebApplications\Collage
+
+3) Server.MapPath("~") -- Returns the "Physical Path to the Root of the Application"
+
+Ex. D:\WebApplications\Collage
+
+4) Server.MapPath("/") -- Returns the physical path to the root of the Domain Name
+
+Ex. C:\Inetpub\wwwroot
+
+
+
+
+
+
+
+
+Path.GetDirectoryName():
+
+string root = Server.MapPath("~");
+string parent = Path.GetDirectoryName(root);
+string grandParent = Path.GetDirectoryName(parent);
